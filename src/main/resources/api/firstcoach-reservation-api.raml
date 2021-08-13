@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: firstcoach-reservation-api
+/booking:
+  /{transportType}:
+    /{transportCompany}:
+      post:
+        queryParameters:
+          departureLocationCode:
+            type: string
+            required: true
+            example: "BEN-SG"
+          destinationLocationCode:
+            type: string
+            required: true
+            example: "KLY-MY"
+        responses:
+          201:
+            body:
+              application/json:
+                example:
+                  {
+                    "message":"Reservation is successful"
+                  }
+              
+              

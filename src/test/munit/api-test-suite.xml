@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+    xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+
+    xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+
+    xmlns="http://www.mulesoft.org/schema/mule/core"
+
+    xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+
+    xsi:schemaLocation="
+
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+
+        http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+
+        http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+
+    <munit:config name="demo-test-suite.xml" />
+
+    <munit:test name="main-BAD_REQUEST-Test" doc:id="67d3955e-134e-4726-afce-14f6d7d04571" description="Test" expectedErrorType="APIKIT:BAD_REQUEST">
+
+        <munit:behavior >
+
+            <munit-tools:mock-when doc:name="Mock when APIKIT:BAD_REQUEST" doc:id="aa42cdb5-93f7-4362-bb59-a7969e9596ac" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="firstcoach-reservation-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+
+                    <munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+
+                </munit-tools:then-return>
+
+            </munit-tools:mock-when>
+
+        </munit:behavior>
+
+        <munit:execution >
+
+            <flow-ref doc:name="Flow-ref to demo-main" doc:id="c5bc8539-b605-4c32-b340-aa36e3919658" name="firstcoach-reservation-api-main"/>
+
+        </munit:execution>
+
+        <munit:validation >
+
+            <munit-tools:assert-equals doc:name="Assert equals" doc:id="ca691fcb-7aa1-4874-a676-ed0c85df6ea6" actual="#[vars.httpStatus]" expected="#[400]"/>
+
+        </munit:validation>
+
+    </munit:test>
+
+    <munit:test name="main-NOT_FOUND-Test" doc:id="85f869c7-a531-44a6-bb3c-f55e93528f6e" description="Test" expectedErrorType="APIKIT:NOT_FOUND">
+
+        <munit:behavior >
+
+            <munit-tools:mock-when doc:name="Mock when APIKIT:NOT_FOUND" doc:id="98714eb2-e677-4dce-a774-7d1e13979a45" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="firstcoach-reservation-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+
+                    <munit-tools:error typeId="APIKIT:NOT_FOUND" />
+
+                </munit-tools:then-return>
+
+            </munit-tools:mock-when>
+
+        </munit:behavior>
+
+        <munit:execution >
+
+            <flow-ref doc:name="Flow Reference" doc:id="7be75ebf-4fb6-4403-bd28-2ee9ce725f51" name="firstcoach-reservation-api-main"/>
+
+        </munit:execution>
+
+        <munit:validation >
+
+            <munit-tools:assert-equals doc:name="Assert equals" doc:id="3fce0e7f-546b-4481-bf04-78aa13cd6d10" actual="#[vars.httpStatus]" expected="#[404]"/>
+
+        </munit:validation>
+
+    </munit:test>
+
+    <munit:test name="main-METHOD_NOT_ALLOWED-Test" doc:id="3c236ad4-74c4-4c5a-99dc-e292a89c105c" description="Test" expectedErrorType="APIKIT:METHOD_NOT_ALLOWED">
+
+        <munit:behavior >
+
+            <munit-tools:mock-when doc:name="Mock when APIKIT:METHOD_NOT_ALLOWED" doc:id="79a43a0e-5b2a-4071-810f-639049a314d2" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="firstcoach-reservation-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+
+                    <munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+
+                </munit-tools:then-return>
+
+            </munit-tools:mock-when>
+
+        </munit:behavior>
+
+        <munit:execution >
+
+            <flow-ref doc:name="Flow-ref to demo-main" doc:id="c3d54b66-56f3-4875-a53a-b82b7e62cc28" name="firstcoach-reservation-api-main"/>
+
+        </munit:execution>
+
+        <munit:validation >
+
+            <munit-tools:assert-equals doc:name="Assert equals" doc:id="194b9015-f40d-4d84-86c4-711c83347972" actual="#[vars.httpStatus]" expected="#[405]"/>
+
+        </munit:validation>
+
+    </munit:test>
+
+    <munit:test name="main-NOT_ACCEPTABLE-Test" doc:id="19737b34-2d75-4262-bb01-b7aa0621deff" description="Test" expectedErrorType="APIKIT:NOT_ACCEPTABLE">
+
+        <munit:behavior >
+
+            <munit-tools:mock-when doc:name="Mock when APIKIT:NOT_ACCEPTABLE" doc:id="c02c03f4-d09d-4e22-bacc-fff285189b34" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="firstcoach-reservation-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+
+                    <munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+
+                </munit-tools:then-return>
+
+            </munit-tools:mock-when>
+
+        </munit:behavior>
+
+        <munit:execution >
+
+            <flow-ref doc:name="Flow Reference" doc:id="11482697-29d7-4f5f-b84f-f2ea4b4b3116" name="firstcoach-reservation-api-main"/>
+
+        </munit:execution>
+
+        <munit:validation >
+
+            <munit-tools:assert-equals doc:name="Assert equals" doc:id="9161c309-79e8-4f97-9719-03d9dabd7d91" actual="#[vars.httpStatus]" expected="#[406]"/>
+
+        </munit:validation>
+
+    </munit:test>
+
+    <munit:test name="main-UNSUPPORTED_MEDIA_TYPE-Test" doc:id="42eb8070-ca0d-44db-aa25-6a6ddc71f997" description="Test" expectedErrorType="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+
+        <munit:behavior >
+
+            <munit-tools:mock-when doc:name="Mock when APIKIT:UNSUPPORTED_MEDIA_TYPE" doc:id="b661aea5-18fe-45ae-8934-f99270116c3b" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="firstcoach-reservation-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+
+                    <munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+
+                </munit-tools:then-return>
+
+            </munit-tools:mock-when>
+
+        </munit:behavior>
+
+        <munit:execution >
+
+            <flow-ref doc:name="Flow-ref to demo-main" doc:id="2fe521e5-8085-4dc4-be1f-bc8d0afbe31b" name="firstcoach-reservation-api-main"/>
+
+        </munit:execution>
+
+        <munit:validation >
+
+            <munit-tools:assert-equals doc:name="Assert equals" doc:id="3629a858-e2ce-44f4-87e9-ac8aa4acedd9" actual="#[vars.httpStatus]" expected="#[415]"/>
+
+        </munit:validation>
+
+    </munit:test>
+
+    <munit:test name="main-NOT_IMPLEMENTED-Test" doc:id="ef89fde0-13f1-41cb-9d07-fb4ed8c950e3" description="Test" expectedErrorType="APIKIT:NOT_IMPLEMENTED">
+
+        <munit:behavior >
+
+            <munit-tools:mock-when doc:name="Mock when APIKIT:NOT_IMPLEMENTED" doc:id="0c5bff0e-5a9d-44f4-aef6-5301a798a9c6" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="firstcoach-reservation-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+
+                    <munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+
+                </munit-tools:then-return>
+
+            </munit-tools:mock-when>
+
+        </munit:behavior>
+
+        <munit:execution >
+
+            <flow-ref doc:name="Flow-ref to demo-main" doc:id="72371dab-5763-473a-ae5a-f0793567856d" name="firstcoach-reservation-api-main"/>
+
+        </munit:execution>
+
+        <munit:validation >
+
+            <munit-tools:assert-equals doc:name="Assert equals" doc:id="50dddc86-9d0a-48cc-8aef-2b09f1865e2a" actual="#[vars.httpStatus]" expected="#[501]"/>
+
+        </munit:validation>
+
+    </munit:test>
+	<munit:test name="firstcoach-sys-api-consoleTest" doc:id="c2618516-1d71-4927-8813-71e09090c565" description="Test" expectedErrorType="APIKIT:NOT_FOUND">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_FOUND" doc:id="67876afd-35b2-4bba-9f33-4533316130c9" processor="apikit:console">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="firstcoach-reservation-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to transportsystem-proc-api-console" doc:id="4553c527-4124-4bde-a325-70f51091d4c3" name="firstcoach-reservation-api-console"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="502c33b7-b6d7-410a-97fd-4487913d2f8b" actual="#[vars.httpStatus]" expected="#[404]"/>
+		</munit:validation>
+	</munit:test>
+
+</mule>
+
